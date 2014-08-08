@@ -1,5 +1,6 @@
-#This script performs a twitter search every 3 minutes for the search term “my bbm pin” and saves the pin into a results.txt
-#file in the same folder.
+#This script performs a twitter search every 3 minutes for the search term “my bbm pin” and saves the pin into a
+# results.txt file in the same folder.
+#README at https://github.com/Xtrato/Miscellaneous/blob/master/Readme%27s/bbmPinEnumerator.md
 import twitter
 import string
 import re

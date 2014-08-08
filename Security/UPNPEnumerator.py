@@ -1,5 +1,5 @@
 #Python code designed to enumerate device details using UPNP. Uses the Scapy framework.
-#README at https://github.com/Xtrato/UPNPEnumeration/blob/master/README.md
+#README at https://github.com/Xtrato/Miscellaneous/blob/master/Readme%27s/UPNPEnumerator.md
 from scapy.all import *
 import xml.etree.ElementTree as ET
 import urllib2
