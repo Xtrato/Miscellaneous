@@ -1,12 +1,12 @@
 from scapy.all import *
-
+ 
 #Must run the following command before executing this script. Allows for the TCP handshake to take place.
 #iptables -A OUTPUT -p tcp --tcp-flags RST RST -j DROP
-
+ 
 #IP and Port of the VNC server
 IpAddress = '192.168.1.13'
 port = 5900
-
+ 
 #Function which is executed on each packet.
 def vncCheck(packet):
     #Checks that the packet is a server protocol version response. (Should contain 'RFB' if it is.
@@ -47,15 +47,15 @@ def vncCheck(packet):
                 print IpAddress + ' uses Colin Dean XVP Authentication'
             else:
                 print IpAddress + ' uses an Unknown Authentication type of: ' + str(authenticationType)
-
+ 
 #Creates and sends a TCP SYN packet to the VNC server. (Step 1 of the TCP handshake)
 syn = IP(dst=IpAddress)/TCP(dport=port, flags='S')
 synack = sr1(syn, timeout=2)
-
+ 
 #Creates and sends an ACK packet is response to the servers SYNACK. (Step 3 of the TCP handshake)
 ack = IP(dst=IpAddress)/TCP(dport=port, flags='A', seq=1, ack=synack.seq + 1)
 send(ack)
-
+ 
 #Sniffs incoming network data after the initial TCP handshake. Sends the packets to the vncCheck function.
-filter = 'port ' + str(port) + ' and host ' + IpAddress
+filter = 'host ' + IpAddress
 vnc = sniff(filter=filter, count=1,timeout=2, prn=vncCheck)
