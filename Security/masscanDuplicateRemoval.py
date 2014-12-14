@@ -1,4 +1,6 @@
-#This is a script used in conjunction with the NTP monlist checker to remove duplicates from a masscan log file.
+#This is a script used in conjunction with the NTP monlist checker which can be found:
+#https://github.com/Xtrato/Miscellaneous/blob/master/Security/ntpMonlistChecker.py
+#to remove duplicates from a masscan log file.
 #It parses through the masscan output called ntp.xml and produces a file called port123.txt.
 #More information can be found http://jamesdotcom.com/?p=578
 from lxml import etree
