@@ -6,9 +6,14 @@ domainsFile = open('domainsList.txt', 'r')
 ipFile = open('ips.txt', 'a')
 
 for domain in domainsFile:
-    answers = dns.resolver.query(domain[:-1])
-    for ip in answers:
-        ipFile.write(str(ip) + '\n')
+    try:
+        answers = dns.resolver.query(domain[:-1])
+        for ip in answers:
+            print(domain + ' ' + str(ip))
+            ipFile.write(str(ip) + '\n')
+    except dns.resolver.NoAnswer:
+        print ('NO A RECORD FOR' + domain)
+        pass
 
 ipFile.close()
 domainsFile.close()
